@@ -1,0 +1,20 @@
+{
+  "name": "playwright-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "trace:open": "playwright show-trace ./test-results/*/*/trace.zip",
+    "allure:report": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.9.0",
+    "@playwright/test": "^1.46.0",
+    "@types/node": "^24.3.0",
+    "allure-playwright": "^2.15.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.4.0"
+  }
+}

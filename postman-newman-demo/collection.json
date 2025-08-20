@@ -1,0 +1,59 @@
+{
+  "info": {
+    "name": "QA Demo Collection",
+    "_postman_id": "12345678-aaaa-bbbb-cccc-1234567890ab",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get todo by id",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/todos/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["todos", "1"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200', () => pm.response.code === 200);",
+              "const json = pm.response.json();",
+              "pm.test('has id=1', () => json.id === 1);",
+              "pm.test('has title', () => !!json.title);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "List todos",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/todos",
+          "host": ["{{baseUrl}}"],
+          "path": ["todos"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('status 200', () => pm.response.code === 200);",
+              "const json = pm.response.json();",
+              "pm.test('is array', () => Array.isArray(json));",
+              "pm.test('not empty', () => json.length > 0);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}

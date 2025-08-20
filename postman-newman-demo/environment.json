@@ -1,0 +1,10 @@
+{
+  "name": "QA Demo Env",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://jsonplaceholder.typicode.com",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  e2e:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox]
+    defaults:
+      run:
+        working-directory: playwright-demo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps (in playwright-demo)
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run tests
+        env:
+          BASE_URL: https://www.saucedemo.com
+          BASE_URL_API: https://jsonplaceholder.typicode.com
+        run: npx playwright test --project=${{ matrix.browser }}
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-${{ matrix.browser }}
+          path: |
+            playwright-demo/test-results/**
+            playwright-demo/playwright-report/**
+            playwright-demo/allure-results/**
+            playwright-demo/**/*.png
+            playwright-demo/**/*.zip
+
+  allure-report:
+    needs: e2e
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Download artifacts from matrix
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+      - name: Merge allure-results
+        run: |
+          mkdir -p allure-results
+          cp -r artifacts/**/playwright-demo/allure-results/* allure-results/ || true
+      - name: Generate Allure report
+        run: |
+          npm i -g allure-commandline
+          allure generate ./allure-results --clean -o ./allure-report
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: ./allure-report
+
+  newman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Newman
+        run: npm install -g newman newman-reporter-htmlextra
+      - name: Run API collection
+        run: |
+          newman run postman-newman-demo/collection.json -e postman-newman-demo/environment.json \
+            --reporters cli,htmlextra \
+            --reporter-htmlextra-export newman-report.html
+      - name: Upload Newman report
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-report
+          path: newman-report.html
+
+  publish-pages:
+    needs: [allure-report, newman]
+    runs-on: ubuntu-latest
+    if: always()
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Create site dir
+        run: mkdir -p site
+      - name: Download Allure report
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-report
+          path: site/allure
+      - name: Download Newman report
+        uses: actions/download-artifact@v4
+        with:
+          name: newman-report
+          path: site/newman
+      - name: Ensure Newman has index.html
+        run: mv site/newman/newman-report.html site/newman/index.html
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

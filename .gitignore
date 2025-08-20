@@ -1,0 +1,14 @@
+# deps
+**/node_modules/
+
+# reports & artifacts
+**/playwright-report/
+**/allure-results/
+**/allure-report/
+**/test-results/
+**/newman-report.html
+
+# misc
+*.log
+.DS_Store
+.last-run.json
