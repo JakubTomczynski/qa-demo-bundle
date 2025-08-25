@@ -64,7 +64,7 @@ Artifact: `newman-report.html`
 ## CI/CD
 
 ### Playwright (`ci.yml`)
-- runs on Chromium / Firefox / WebKit
+- runs on Chromium / Firefox 
 - artifacts: traces, videos, screenshots
 - Allure report generated in CI
 

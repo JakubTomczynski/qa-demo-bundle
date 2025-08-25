@@ -5,14 +5,14 @@ export class CartPage {
 
   selectors = {
     cartItem: () => this.page.locator('.cart_item'),
-    checkoutBtn: () => this.page.getByRole('button', { name: 'checkout' }),
+    checkoutButton: () => this.page.getByRole('button', { name: 'checkout' }),
   };
 
   async assertItemVisible(name: string) {
     await expect(this.selectors.cartItem().getByText(name)).toBeVisible();
   }
 
-  async checkoutBtnClick() {
-    await this.selectors.checkoutBtn().click();
+  async clickCheckoutButton() {
+    await this.selectors.checkoutButton().click();
   }
 }
