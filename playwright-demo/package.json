@@ -5,6 +5,8 @@
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
+    "test:regression": "playwright test -g \"@regression\"",
+    "test:smoke": "playwright test -g \"@smoke\"",
     "trace:open": "playwright show-trace ./test-results/*/*/trace.zip",
     "allure:report": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report"
