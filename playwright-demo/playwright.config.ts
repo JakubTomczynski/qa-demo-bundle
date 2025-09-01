@@ -50,12 +50,22 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testIgnore: ['**/tests/a11y/**'],
       use: { ...devices['Desktop Chrome'] },
     },
-
     {
       name: 'firefox',
+      testIgnore: ['**/tests/a11y/**'],
       use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'a11y',
+      testMatch: ['**/tests/a11y/**/*.spec.ts'],
+      use: {
+        baseURL: 'https://www.qa-practice.com/',
+        storageState: undefined,
+        ...devices['Desktop Chrome'],
+      },
     },
 
     // {

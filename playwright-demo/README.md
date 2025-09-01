@@ -19,6 +19,9 @@ npx playwright test -g @smoke
 # regression only
 npx playwright test -g @regression
 
+# accessibility only
+npx playwright test -g @a11y
+
 # single test
 npx playwright test login.spec.ts
 
