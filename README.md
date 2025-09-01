@@ -1,17 +1,14 @@
 # QA Demo Bundle — Playwright + Postman/Newman
 
 Public QA Demo Bundle — ready-made skeletons to showcase in interviews and run in CI/CD.  
-Perfect portfolio to share with recruiters: **Playwright (E2E + a11y)** + **Postman/Newman (API)** + **CI + reports**.
-
 ---
 
 ## Playwright
-
 - Page Object Model (POM)
-- Fixtures (login & auth)
+- Fixtures (classFixtures)
 - Allure reporter (trace, video, screenshot, JSON → HTML report)
-- axe-core a11y smoke (WCAG 2.2)
-- CI matrix (Chrome/Firefox/WebKit)
+- axe-core a11y smoke
+- CI matrix (Chrome/Firefox)
 
 ### Start
 ```bash
@@ -29,6 +26,9 @@ npx playwright test -g @smoke
 # regression only
 npx playwright test -g @regression
 
+# accessibility only
+npx playwright test -g @a11y
+
 # single test
 npx playwright test login.spec.ts
 
@@ -42,7 +42,6 @@ npm run trace:open
 ---
 
 ## Postman / Newman
-
 - Collection + environment (`collection.json` + `environment.json`)
 - Workflow GitHub Actions (`newman.yml`)
 
@@ -88,12 +87,16 @@ Full docs are in `/docs`:
 ## Example target
 Demo repo uses:  
 👉 https://www.saucedemo.com
+👉 https://jsonplaceholder.typicode.com
+👉 https://www.qa-practice.com/
 
 ---
 
 ## Tags
 - `@smoke` — quick sanity
 - `@regression` — broader coverage
+- `@a11y` — accessibility coverage
+
 
 
 ## Live Reports
