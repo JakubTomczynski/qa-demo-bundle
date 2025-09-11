@@ -14,14 +14,16 @@ npm run allure:report && npm run allure:open
 
 ```bash
 # smoke only
-npx playwright test -g @smoke
+npx playwright test -g "@smoke"
 
 # regression only
-npx playwright test -g @regression
+npx playwright test -g "@regression"
 
 # accessibility only
-npx playwright test -g @a11y
+npx playwright test -g "@a11y"
 
+# visual only
+npx playwright test -g "@visual"
 # single test
 npx playwright test login.spec.ts
 

@@ -1,6 +1,6 @@
 # QA Demo Bundle — Playwright + Postman/Newman
 
-Public QA Demo Bundle — ready-made skeletons to showcase in interviews and run in CI/CD.  
+Public QA Demo Bundle — ready-made skeletons to showcase.  
 ---
 
 ## Playwright
@@ -9,6 +9,7 @@ Public QA Demo Bundle — ready-made skeletons to showcase in interviews and run
 - Allure reporter (trace, video, screenshot, JSON → HTML report)
 - axe-core a11y smoke
 - CI matrix (Chrome/Firefox)
+- Visual regression
 
 ### Start
 ```bash
@@ -96,6 +97,7 @@ Demo repo uses:
 - `@smoke` — quick sanity
 - `@regression` — broader coverage
 - `@a11y` — accessibility coverage
+- `@visual` - visual testing
 
 
 

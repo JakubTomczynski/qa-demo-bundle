@@ -99,9 +99,43 @@ jobs:
         with:
           name: newman-report
           path: newman-report.html
+          
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: playwright-demo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps (in playwright-demo)
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run visual tests (Chromium only)
+        env:
+          BASE_URL: https://www.saucedemo.com
+        run: npx playwright test --project=chromium --grep @visual
+
+      - name: Upload visual artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-artifacts
+          path: |
+            playwright-demo/test-results/**
+            playwright-demo/playwright-report/**
+            playwright-demo/**/__snapshots__/**
+            playwright-demo/**/*.png
 
   publish-pages:
-    needs: [allure-report, newman]
+    needs: [allure-report, newman, visual]
     runs-on: ubuntu-latest
     if: always()
     environment:
@@ -110,11 +144,16 @@ jobs:
     steps:
       - name: Create site dir
         run: mkdir -p site
+
       - name: Download Allure report
         uses: actions/download-artifact@v4
         with:
           name: allure-report
-          path: site/allure
+      - name: Move Allure into site
+        run: |
+          mkdir -p site/allure
+          cp -r allure-report/* site/allure/ || true
+
       - name: Download Newman report
         uses: actions/download-artifact@v4
         with:
@@ -122,10 +161,18 @@ jobs:
           path: site/newman
       - name: Ensure Newman has index.html
         run: mv site/newman/newman-report.html site/newman/index.html
+
+      - name: Download Visual artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: visual-artifacts
+          path: site/visual
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
+
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4

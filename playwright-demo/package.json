@@ -8,6 +8,8 @@
     "test:smoke": "playwright test -g \"@smoke\"",
     "test:regression": "playwright test -g \"@regression\"",
     "test:a11y": "playwright test -g \"@a11y\"",
+    "test:visual": "playwright test -g \"@visual\"",
+    "test:visual:update": "playwright test -g @visual --update-snapshots",
     "trace:open": "playwright show-trace ./test-results/*/*/trace.zip",
     "allure:report": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report"

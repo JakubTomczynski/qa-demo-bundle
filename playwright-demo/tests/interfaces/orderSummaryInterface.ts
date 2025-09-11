@@ -13,3 +13,11 @@ export const sauceLabsBackpack: OrderSummaryData = {
   tax: '$2.40',
   total: '$32.39',
 };
+
+export const sauceLabsBoltShirt: OrderSummaryData = {
+  paymentInfo: 'SauceCard #31337',
+  shippingInfo: 'Free Pony Express Delivery!',
+  itemTotal: '$17.27',
+  tax: '$1.28',
+  total: '$15.99',
+};

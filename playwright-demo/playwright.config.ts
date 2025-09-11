@@ -15,6 +15,11 @@ export default defineConfig({
   snapshotDir: 'snapshots',
   timeout: 60 * 1000,
   expect: {
+    toHaveScreenshot: {
+      animations: 'disabled',
+      caret: 'hide',
+      maxDiffPixelRatio: 0.15,
+    },
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`

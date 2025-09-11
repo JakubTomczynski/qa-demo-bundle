@@ -45,16 +45,3 @@ export async function tabN(page: Page, n: number) {
 export async function assertFocusVisible(a11yPage: A11yPage) {
   await expect(a11yPage.selectors.homePageMenuLink()).toBeFocused();
 }
-
-export const assertFocusWithin = async (page: Page, selector: string) => {
-  await expect
-    .poll(
-      async () =>
-        page.evaluate((sel) => {
-          const el = document.querySelector(sel);
-          return el ? el.contains(document.activeElement) : false;
-        }, selector),
-      { message: `Focus should be inside element: ${selector}` },
-    )
-    .toBeTruthy();
-};
