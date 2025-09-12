@@ -1,0 +1,218 @@
+{
+  "config": {
+    "configFile": "C:\\PlaywrightBundle\\qa-demo-bundle\\playwright-demo\\playwright.config.ts",
+    "rootDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "C:\\PlaywrightBundle\\qa-demo-bundle\\playwright-demo\\global-setup.ts",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "line",
+        null
+      ],
+      [
+        "C:\\PlaywrightBundle\\qa-demo-bundle\\playwright-demo\\node_modules\\allure-playwright\\dist\\index.js",
+        {
+          "outputFolder": "allure-results"
+        }
+      ],
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/tests",
+        "testIgnore": [
+          "**/tests/a11y/**",
+          "**/tests/visual/**"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/tests",
+        "testIgnore": [
+          "**/tests/a11y/**",
+          "**/tests/visual/**"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "a11y",
+        "name": "a11y",
+        "testDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/tests/a11y/**/*.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "visual-chromium",
+        "name": "visual-chromium",
+        "testDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/tests/visual/**/*.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "visual-firefox",
+        "name": "visual-firefox",
+        "testDir": "C:/PlaywrightBundle/qa-demo-bundle/playwright-demo/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/tests/visual/**/*.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "changed",
+    "updateSourceMethod": "patch",
+    "version": "1.54.2",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "visual\\inventory.spec.ts",
+      "file": "visual/inventory.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "@visual base page",
+          "file": "visual/inventory.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Landing page baseline",
+              "ok": true,
+              "tags": [
+                "visual"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "visual-firefox",
+                  "projectName": "visual-firefox",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4888,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "A snapshot doesn't exist at C:\\PlaywrightBundle\\qa-demo-bundle\\playwright-demo\\snapshots\\visual\\inventory.spec.ts-snapshots\\inventory-Sauce-Labs-Bolt-T-Shirt-visual-firefox-win32.png, writing actual.\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-12T20:40:40.350Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "inventory-Sauce-Labs-Bolt-T-Shirt-expected.png",
+                          "contentType": "image/png",
+                          "path": "C:\\PlaywrightBundle\\qa-demo-bundle\\playwright-demo\\snapshots\\visual\\inventory.spec.ts-snapshots\\inventory-Sauce-Labs-Bolt-T-Shirt-visual-firefox-win32.png"
+                        },
+                        {
+                          "name": "inventory-Sauce-Labs-Bolt-T-Shirt-actual.png",
+                          "contentType": "image/png",
+                          "path": "C:\\PlaywrightBundle\\qa-demo-bundle\\playwright-demo\\test-results\\visual-inventory--visual-base-page-Landing-page-baseline-visual-firefox\\inventory-Sauce-Labs-Bolt-T-Shirt-actual.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "06afc156a4250f40aba2-49c487cd657d78f345e3",
+              "file": "visual/inventory.spec.ts",
+              "line": 9,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-12T20:40:38.211Z",
+    "duration": 8897.747000000001,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

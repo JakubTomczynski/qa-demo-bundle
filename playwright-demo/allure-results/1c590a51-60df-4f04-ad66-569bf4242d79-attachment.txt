@@ -1,0 +1,1 @@
+A snapshot doesn't exist at C:\PlaywrightBundle\qa-demo-bundle\playwright-demo\snapshots\visual\inventory.spec.ts-snapshots\inventory-Sauce-Labs-Backpack-firefox-win32.png, writing actual.

@@ -1,0 +1,39 @@
+# Page snapshot
+
+```yaml
+- img
+- list:
+  - listitem:
+    - link " Homepage":
+      - /url: /
+  - listitem:
+    - link "  Single UI Elements":
+      - /url: javascript:;
+- heading "Hello!" [level=1]
+- paragraph: This site is designed to gain practical skills in testing. It can be useful for both people studying manual testing and automated testing. Here is a collection of various web elements and requirements for them. The number and complexity of elements will gradually increase.
+- paragraph: "Not sure where to start? Try testing these simple elements:"
+- list:
+  - listitem:
+    - link "Text input":
+      - /url: /elements/input/simple
+  - listitem:
+    - link "Simple button":
+      - /url: /elements/button/simple
+  - listitem:
+    - link "Single checkbox":
+      - /url: /elements/checkbox/single_checkbox
+  - listitem:
+    - link "Text area":
+      - /url: /elements/textarea/single
+  - listitem:
+    - link "Select input":
+      - /url: /elements/select/single_select
+- link "Contact":
+  - /url: /contact/
+- link "What's new":
+  - /url: /whats_new/
+- contentinfo:
+  - text: "© 2025 Copyright:"
+  - link "www.qa-practice.com":
+    - /url: https://www.qa-practice.com/
+```

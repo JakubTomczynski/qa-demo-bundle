@@ -1,0 +1,63 @@
+# Page snapshot
+
+```yaml
+- img
+- list:
+  - listitem:
+    - link " Homepage":
+      - /url: /
+  - listitem:
+    - link "  Single UI Elements":
+      - /url: javascript:;
+    - list:
+      - listitem:
+        - link "Inputs":
+          - /url: /elements/input
+      - listitem:
+        - link "Buttons":
+          - /url: /elements/button
+      - listitem:
+        - link "Checkbox":
+          - /url: /elements/checkbox
+      - listitem:
+        - link "Select":
+          - /url: /elements/select
+      - listitem:
+        - link "New tab":
+          - /url: /elements/new_tab
+      - listitem:
+        - link "Text area":
+          - /url: /elements/textarea
+      - listitem:
+        - link "Alerts":
+          - /url: /elements/alert
+      - listitem:
+        - link "Drag and Drop":
+          - /url: /elements/dragndrop
+      - listitem:
+        - link "Iframes":
+          - /url: /elements/iframe/iframe_page
+      - listitem:
+        - link "Pop-Up":
+          - /url: /elements/popup
+- heading "Pop-Up" [level=1]
+- list:
+  - listitem:
+    - link "Modal":
+      - /url: /elements/popup/modal
+  - listitem:
+    - link "Iframe Pop-Up":
+      - /url: /elements/popup/iframe_popup
+- button "Launch Pop-Up"
+- button "Requirements:":
+  - img
+  - text: "Requirements:"
+- link "Contact":
+  - /url: /contact/
+- link "What's new":
+  - /url: /whats_new/
+- contentinfo:
+  - text: "© 2025 Copyright:"
+  - link "www.qa-practice.com":
+    - /url: https://www.qa-practice.com/
+```
