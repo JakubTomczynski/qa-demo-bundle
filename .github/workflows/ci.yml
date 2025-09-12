@@ -122,7 +122,7 @@ jobs:
         env:
           BASE_URL: https://www.saucedemo.com
           DEBUG: pw:api,pw:browser*
-        run: npx playwright test --project=chromium --grep "@visual" --headless --reporter=list,json
+        run: npx playwright test --project=chromium --grep "@visual" --reporter=list,json
 
       - name: Upload visual artifacts
         if: always()
