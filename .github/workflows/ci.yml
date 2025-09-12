@@ -122,7 +122,7 @@ jobs:
         env:
           BASE_URL: https://www.saucedemo.com
           DEBUG: pw:api,pw:browser*
-        run: npx playwright test --project=chromium --grep "@visual"
+        run: npx playwright test --project=chromium --grep "@visual" --headless --reporter=list,json
 
       - name: Upload visual artifacts
         if: always()
@@ -131,10 +131,24 @@ jobs:
           name: visual-artifacts
           path: |
             playwright-demo/test-results/**
+            playwright-demo/report.json
             playwright-demo/playwright-report/**
             playwright-demo/snapshots/visual/**
             playwright-demo/**/*.png
             playwright-demo/**/__snapshots__/**
+      - name: Summarize Playwright failures
+        if: always()
+        run: |
+          echo "### Playwright failures" >> $GITHUB_STEP_SUMMARY
+          if [ -f playwright-demo/report.json ]; then
+            FAILS=$(jq '[.suites[]?.specs[]?.tests[]? | select(.outcome=="failed")] | length' playwright-demo/report.json)
+            echo "- Failed tests: $FAILS" >> $GITHUB_STEP_SUMMARY
+            jq -r '.suites[]?.specs[]?.tests[]? | select(.outcome=="failed") |
+              "* \(.titlePath | join(\" › \")) — \(.errors[0]?.message // "no message")"' \
+              playwright-demo/report.json >> $GITHUB_STEP_SUMMARY || true
+          else
+            echo "- report.json not found" >> $GITHUB_STEP_SUMMARY
+          fi
 
   publish-pages:
     needs: [allure-report, newman, visual]
