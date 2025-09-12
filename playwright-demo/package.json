@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.9.0",
-    "@playwright/test": "^1.46.0",
+    "@playwright/test": "^1.55.0",
     "@types/node": "^24.3.0",
     "allure-playwright": "^2.15.0",
     "prettier": "^3.6.2",
