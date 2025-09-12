@@ -12,3 +12,6 @@
 *.log
 .DS_Store
 .last-run.json
+
+# storageState
+storageState.json

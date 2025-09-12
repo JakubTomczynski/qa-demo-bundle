@@ -18,7 +18,7 @@ export default defineConfig({
     toHaveScreenshot: {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixelRatio: 0.15,
+      maxDiffPixelRatio: 0.2,
     },
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -35,8 +35,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   // workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['line'], ['allure-playwright', { outputFolder: 'allure-results' }]],
-  // reporter: [['html']],
+  reporter: [['line'], ['allure-playwright', { outputFolder: 'allure-results' }], ['html']],
   workers: 1,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

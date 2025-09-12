@@ -21,3 +21,11 @@ export const sauceLabsBoltShirt: OrderSummaryData = {
   tax: '$1.28',
   total: '$15.99',
 };
+
+export interface OrderDetails {
+  itemName: string;
+}
+
+export const sauceLabsBoltShirtDetails: OrderDetails = {
+  itemName: 'Sauce Labs Bolt T-Shirt',
+};
