@@ -121,7 +121,7 @@ jobs:
       - name: Run visual tests (Chromium only)
         env:
           BASE_URL: https://www.saucedemo.com
-        run: npx playwright test --project=chromium --grep @visual
+        run: npx playwright test --project=chromium --grep "@visual"
 
       - name: Upload visual artifacts
         if: always()
@@ -131,7 +131,7 @@ jobs:
           path: |
             playwright-demo/test-results/**
             playwright-demo/playwright-report/**
-            playwright-demo/**/__snapshots__/**
+            playwright-demo/snapshots/visual/**
             playwright-demo/**/*.png
 
   publish-pages:
