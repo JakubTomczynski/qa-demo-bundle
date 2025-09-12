@@ -14,4 +14,4 @@
 .last-run.json
 
 # storageState
-storageState.json
+**/storageState*.json
