@@ -79,6 +79,11 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
       },
     },
+    {
+      name: 'visual-firefox',
+      testMatch: ['**/tests/visual/**/*.spec.ts'],
+      use: { ...devices['Desktop Firefox'] },
+    },
 
     // {
     //   name: 'webkit',
