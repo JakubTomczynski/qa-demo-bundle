@@ -55,12 +55,12 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      testIgnore: ['**/tests/a11y/**'],
+      testIgnore: ['**/tests/a11y/**', '**/tests/visual/**'],
       use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'firefox',
-      testIgnore: ['**/tests/a11y/**'],
+      testIgnore: ['**/tests/a11y/**', '**/tests/visual/**'],
       use: { ...devices['Desktop Firefox'] },
     },
     {
