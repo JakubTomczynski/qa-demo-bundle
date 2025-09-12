@@ -2,9 +2,9 @@ name: ci
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
@@ -28,6 +28,7 @@ jobs:
         working-directory: playwright-demo
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -62,21 +63,26 @@ jobs:
     if: always()
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Download artifacts from matrix
         uses: actions/download-artifact@v4
         with:
           path: ./artifacts
+
       - name: Merge allure-results
         run: |
           mkdir -p allure-results
           cp -r artifacts/**/playwright-demo/allure-results/* allure-results/ || true
+
       - name: Generate Allure report
         run: |
           npm i -g allure-commandline
           allure generate ./allure-results --clean -o ./allure-report
+
       - name: Upload Allure report
         uses: actions/upload-artifact@v4
         with:
@@ -87,27 +93,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Install Newman
         run: npm install -g newman newman-reporter-htmlextra
+
       - name: Run API collection
         run: |
           newman run postman-newman-demo/collection.json -e postman-newman-demo/environment.json \
             --reporters cli,htmlextra \
             --reporter-htmlextra-export newman-report.html
+
       - name: Upload Newman report
         uses: actions/upload-artifact@v4
         with:
           name: newman-report
           path: newman-report.html
-          
+
   visual:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     timeout-minutes: 20
     defaults:
       run:
         working-directory: playwright-demo
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -116,13 +126,13 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install
 
       - name: Run visual tests (Chromium only)
         env:
           BASE_URL: https://www.saucedemo.com
           DEBUG: pw:api,pw:browser*
-        run: npx playwright test --project=chromium --grep "@visual" --reporter=list,json
+        run: npx playwright test --project=chromium --grep "@visual" --reporter=list
 
       - name: Upload visual artifacts
         if: always()
@@ -131,24 +141,10 @@ jobs:
           name: visual-artifacts
           path: |
             playwright-demo/test-results/**
-            playwright-demo/report.json
             playwright-demo/playwright-report/**
             playwright-demo/snapshots/visual/**
             playwright-demo/**/*.png
             playwright-demo/**/__snapshots__/**
-      - name: Summarize Playwright failures
-        if: always()
-        run: |
-          echo "### Playwright failures" >> $GITHUB_STEP_SUMMARY
-          if [ -f playwright-demo/report.json ]; then
-            FAILS=$(jq '[.suites[]?.specs[]?.tests[]? | select(.outcome=="failed")] | length' playwright-demo/report.json)
-            echo "- Failed tests: $FAILS" >> $GITHUB_STEP_SUMMARY
-            jq -r '.suites[]?.specs[]?.tests[]? | select(.outcome=="failed") |
-              "* \(.titlePath | join(\" › \")) — \(.errors[0]?.message // "no message")"' \
-              playwright-demo/report.json >> $GITHUB_STEP_SUMMARY || true
-          else
-            echo "- report.json not found" >> $GITHUB_STEP_SUMMARY
-          fi
 
   publish-pages:
     needs: [allure-report, newman, visual]
@@ -165,6 +161,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: allure-report
+
       - name: Move Allure into site
         run: |
           mkdir -p site/allure
@@ -175,6 +172,7 @@ jobs:
         with:
           name: newman-report
           path: site/newman
+
       - name: Ensure Newman has index.html
         run: mv site/newman/newman-report.html site/newman/index.html
 
