@@ -43,7 +43,7 @@ jobs:
         env:
           BASE_URL: https://www.saucedemo.com
           BASE_URL_API: https://jsonplaceholder.typicode.com
-        run: npx playwright test --project=${{ matrix.browser }} --grep-invert "@visual"
+        run: npx playwright test --project=${{ matrix.browser }}
 
       - name: Upload test artifacts
         if: always()

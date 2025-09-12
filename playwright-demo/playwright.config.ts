@@ -72,6 +72,13 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
       },
     },
+    {
+      name: 'visual-chromium',
+      testMatch: ['**/tests/visual/**/*.spec.ts'],
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
 
     // {
     //   name: 'webkit',
