@@ -17,7 +17,8 @@ export class A11yPage {
     iframesLink: () => this.page.getByRole('link', { name: 'Iframes' }),
     popUpLink: () => this.page.getByRole('link', { name: 'Pop-Up' }),
     launchPopUpButton: () => this.page.getByRole('button', { name: 'Launch Pop-Up' }),
-    popUpHeading: () => this.page.getByRole('heading', { name: 'I am a Pop-Up' }),
+    popUpModal: () => this.page.getByRole('dialog', { name: 'I am a Pop-Up' }),
+    anyOpenModal: () => this.page.locator('.modal.show'),
   };
   async verifyUiElementsList() {
     const expectedLinks = [

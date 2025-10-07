@@ -84,7 +84,15 @@ export default defineConfig({
       testMatch: ['**/tests/visual/**/*.spec.ts'],
       use: { ...devices['Desktop Firefox'] },
     },
-
+    // {
+    // name: 'ai-chat',
+    // testMatch: ['**/tests/ai-chat/**/*.spec.ts'],
+    // use: {
+    //   baseURL: 'https://nextjs-ai-jakub.vercel.app',
+    //   storageState: undefined,
+    //   ...devices['Desktop Chrome'],
+    // },
+    // },
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },

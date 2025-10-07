@@ -5,6 +5,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 import { BasePage } from '../pages/BasePage';
 import { A11yPage } from '../pages/A11yPracticePage';
+// import { AiChatPage } from '../pages/aiChatPage';
 
 export const test = base.extend<{
   page: Page;
@@ -14,6 +15,7 @@ export const test = base.extend<{
   checkoutPage: CheckoutPage;
   basePage: BasePage;
   a11yPage: A11yPage;
+  // aiChatPage: AiChatPage;
 }>({
   cartPage: async ({ page }, use) => {
     await use(new CartPage(page));
@@ -33,4 +35,7 @@ export const test = base.extend<{
   a11yPage: async ({ page }, use) => {
     await use(new A11yPage(page));
   },
+  // aiChatPage: async ({ page }, use) => {
+  //   await use(new AiChatPage(page));
+  // },
 });

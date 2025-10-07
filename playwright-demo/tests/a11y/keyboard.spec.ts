@@ -20,13 +20,14 @@ test.describe('@a11y @keyboard Focus management & shortcuts', () => {
     await test.step('Open modal via button', async () => {
       await a11yPage.goToPopUp();
       await a11yPage.launchPopUp();
+      await expect(a11yPage.selectors.anyOpenModal()).toBeVisible({ timeout: 1000 });
     });
     await test.step('Try tabbing around inside modal', async () => {
       await tabN(page, 10);
     });
     await test.step('Escape should close modal', async () => {
       await page.keyboard.press('Escape');
-      await expect(a11yPage.selectors.popUpHeading()).toBeHidden();
+      await expect(a11yPage.selectors.popUpModal()).toBeHidden();
     });
   });
 
